@@ -18,49 +18,59 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                            <children>
-                              <RadioButton fx:id="red" mnemonicParsing="false" selected="true" text="Piros">
+                              <RadioButton fx:id="red" mnemonicParsing="false" onAction="#changeBg" selected="true" text="Piros">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="color" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="green" mnemonicParsing="false" text="Zöld" toggleGroup="$color" />
-                              <RadioButton fx:id="blue" mnemonicParsing="false" text="Kék" toggleGroup="$color" />
+                              <RadioButton fx:id="green" mnemonicParsing="false" onAction="#changeBg" text="Zöld" toggleGroup="$color" />
+                              <RadioButton fx:id="blue" mnemonicParsing="false" onAction="#changeBg" text="Kék" toggleGroup="$color" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                            <children>
-                              <RadioButton fx:id="square" mnemonicParsing="false" selected="true" text="Négyzet">
+                              <RadioButton fx:id="square" mnemonicParsing="false" onAction="#changeImg" selected="true" text="Négyzet">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="shape" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="circle" mnemonicParsing="false" text="Kör" toggleGroup="$shape" />
-                              <RadioButton fx:id="triangle" mnemonicParsing="false" text="Háromszög" toggleGroup="$shape" />
+                              <RadioButton fx:id="circle" mnemonicParsing="false" onAction="#changeImg" text="Kör" toggleGroup="$shape" />
+                              <RadioButton fx:id="triangle" mnemonicParsing="false" onAction="#changeImg" text="Háromszög" toggleGroup="$shape" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/negyzet.png" />
-                           </image>
-                        </ImageView>
+                        <VBox fx:id="imgBackgrond" alignment="CENTER" fillWidth="false" style="-fx-background-color: red; -fx-border-color: black; -fx-border-width: 3px;">
+                           <children>
+                              <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/negyzet.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="30.0" prefWidth="150.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Hozzáad" />
-                        <Button mnemonicParsing="false" text="Töröl" />
+                        <Button mnemonicParsing="false" onAction="#add" text="Hozzáad" />
+                        <Button mnemonicParsing="false" onAction="#delete" text="Töröl" />
                      </children>
                   </HBox>
                   <ListView fx:id="list" prefHeight="280.0" prefWidth="280.0" />
-                  <Button mnemonicParsing="false" text="Mentés" />
+                  <Button mnemonicParsing="false" onAction="#save" text="Mentés" />
                </children>
             </VBox>
          </children>
