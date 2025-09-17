@@ -65,12 +65,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="30.0" prefWidth="150.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#add" text="Hozzáad" />
-                        <Button mnemonicParsing="false" onAction="#delete" text="Töröl" />
+                        <Button mnemonicParsing="false" onAction="#add" text="Hozzáad" fx:id="addButton"/>
+                        <Button mnemonicParsing="false" onAction="#delete" text="Töröl" fx:id="deleteButton"/>
                      </children>
                   </HBox>
                   <ListView fx:id="list" prefHeight="280.0" prefWidth="280.0" />
-                  <Button mnemonicParsing="false" onAction="#save" text="Mentés" />
+                  <Button mnemonicParsing="false" onAction="#save" text="Mentés" fx:id="saveButton"/>
                </children>
             </VBox>
          </children>

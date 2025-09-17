@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
@@ -24,8 +25,10 @@ public class AlakzatController implements Initializable {
     @FXML public ListView<String> list;
     @FXML public ImageView imageView;
     @FXML public VBox imgBackgrond;
+    @FXML public Button addButton, deleteButton, saveButton;
 
     public static ArrayList<Alakzat> alakzatokList = new ArrayList<>();
+
 
     @FXML
     protected void fillUp(){
@@ -94,8 +97,8 @@ public class AlakzatController implements Initializable {
             FileWriter writer = new FileWriter("alakzat.dat", StandardCharsets.UTF_8, false);
             for(Alakzat a : alakzatokList){
                 writer.write(a.color + ", " + a.shape + "\n");
-                writer.close();
             }
+            writer.close();
         }
         catch (Exception e){
             System.out.println("Hiba a fájl írásakor: " + e.getMessage());
@@ -122,6 +125,15 @@ public class AlakzatController implements Initializable {
         catch (Exception e){
             System.out.println("Hiba a fájl megnyitásakor: " + e.getMessage());
         }
+
+        Image add_img = new Image(getClass().getResourceAsStream("/icons/add16.png"));
+        addButton.setGraphic(new ImageView(add_img));
+
+        Image delete_img = new Image(getClass().getResourceAsStream("/icons/del16.png"));
+        deleteButton.setGraphic(new ImageView(delete_img));
+
+        Image save_img = new Image(getClass().getResourceAsStream("/icons/save16.png"));
+        saveButton.setGraphic(new ImageView(save_img));
 
     }
 }
