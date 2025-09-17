@@ -5,46 +5,58 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.demo1.AlakzatController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.AlakzatController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
       <HBox prefHeight="600.0" prefWidth="400.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="300.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Piros" />
-                              <RadioButton mnemonicParsing="false" text="Zöld" />
-                              <RadioButton mnemonicParsing="false" text="Kék" />
+                              <RadioButton fx:id="red" mnemonicParsing="false" selected="true" text="Piros">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="color" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="green" mnemonicParsing="false" text="Zöld" toggleGroup="$color" />
+                              <RadioButton fx:id="blue" mnemonicParsing="false" text="Kék" toggleGroup="$color" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Négyzet" />
-                              <RadioButton mnemonicParsing="false" text="Kör" />
-                              <RadioButton mnemonicParsing="false" text="Háromszög" />
+                              <RadioButton fx:id="square" mnemonicParsing="false" selected="true" text="Négyzet">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="shape" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="circle" mnemonicParsing="false" text="Kör" toggleGroup="$shape" />
+                              <RadioButton fx:id="triangle" mnemonicParsing="false" text="Háromszög" toggleGroup="$shape" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <ImageView fitHeight="264.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="border: 1px;">
+                     <image>
+                        <Image url="@/icons/negyzet.png" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="30.0" prefWidth="150.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Hozzáad" />
+                        <Button mnemonicParsing="false" text="Töröl" />
                      </children>
                   </HBox>
-                  <ListView prefHeight="280.0" prefWidth="280.0" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <ListView fx:id="list" prefHeight="280.0" prefWidth="280.0" />
+                  <Button mnemonicParsing="false" text="Mentés" />
                </children>
             </VBox>
          </children>
