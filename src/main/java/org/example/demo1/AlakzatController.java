@@ -29,6 +29,11 @@ public class AlakzatController implements Initializable {
 
     public static ArrayList<Alakzat> alakzatokList = new ArrayList<>();
 
+    public static boolean isTestIsRunning = false;
+
+    public static String TestColor, TestShape;
+    public static int TestIndex;
+
 
     @FXML
     protected void fillUp(){
@@ -36,22 +41,34 @@ public class AlakzatController implements Initializable {
         for (Alakzat a : alakzatokList) {
             lines.add(a.color + ", " + a.shape);
         }
-        list.setItems(lines);
+        if(!isTestIsRunning) list.setItems(lines);
+
     }
 
     @FXML
     protected void add(){
-        String color = red.isSelected() ? "Piros" : blue.isSelected() ? "Kék" : green.isSelected() ? "Zöld" : "";
-        String shape = circle.isSelected() ? "Kör" : square.isSelected() ? "Négyzet" : triangle.isSelected() ? "Háromszög" : "";
+        String color, shape;
+        if(!isTestIsRunning){
+            color = red.isSelected() ? "Piros" : blue.isSelected() ? "Kék" : green.isSelected() ? "Zöld" : "";
+            shape = circle.isSelected() ? "Kör" : square.isSelected() ? "Négyzet" : triangle.isSelected() ? "Háromszög" : "";
 
-        alakzatokList.add(new Alakzat(color, shape));
+            alakzatokList.add(new Alakzat(color, shape));
+        }
+        else{
+            alakzatokList.add(TestIndex, new Alakzat(TestColor, TestShape));
+        }
 
         fillUp();
     }
 
     @FXML
     protected void delete(){
-        alakzatokList.remove(list.getSelectionModel().getSelectedIndex());
+        if(isTestIsRunning){
+            alakzatokList.remove(TestIndex);
+        }
+        else{
+            alakzatokList.remove(list.getSelectionModel().getSelectedIndex());
+        }
 
         fillUp();
     }
@@ -126,14 +143,16 @@ public class AlakzatController implements Initializable {
             System.out.println("Hiba a fájl megnyitásakor: " + e.getMessage());
         }
 
-        Image add_img = new Image(getClass().getResourceAsStream("/icons/add16.png"));
-        addButton.setGraphic(new ImageView(add_img));
+        if(!isTestIsRunning){
+            Image add_img = new Image(getClass().getResourceAsStream("/icons/add16.png"));
+            addButton.setGraphic(new ImageView(add_img));
 
-        Image delete_img = new Image(getClass().getResourceAsStream("/icons/del16.png"));
-        deleteButton.setGraphic(new ImageView(delete_img));
+            Image delete_img = new Image(getClass().getResourceAsStream("/icons/del16.png"));
+            deleteButton.setGraphic(new ImageView(delete_img));
 
-        Image save_img = new Image(getClass().getResourceAsStream("/icons/save16.png"));
-        saveButton.setGraphic(new ImageView(save_img));
+            Image save_img = new Image(getClass().getResourceAsStream("/icons/save16.png"));
+            saveButton.setGraphic(new ImageView(save_img));
+        }
 
     }
 }
