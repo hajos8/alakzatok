@@ -63,49 +63,31 @@ public class AlakzatController implements Initializable {
 
     @FXML
     protected void delete(){
-        if(isTestIsRunning){
-            alakzatokList.remove(TestIndex);
-        }
-        else{
-            alakzatokList.remove(list.getSelectionModel().getSelectedIndex());
-        }
+        if(isTestIsRunning) alakzatokList.remove(TestIndex);
+        else alakzatokList.remove(list.getSelectionModel().getSelectedIndex());
 
         fillUp();
     }
 
     @FXML
     protected void changeBg(){
-        if(red.isSelected()){
-            imgBackgrond.setStyle("-fx-background-color: red;-fx-border-color: black; -fx-border-width: 3px;");
-        }
-        else if(blue.isSelected()){
-            imgBackgrond.setStyle("-fx-background-color: blue;-fx-border-color: black; -fx-border-width: 3px;");
-        }
-        else if(green.isSelected()){
-            imgBackgrond.setStyle("-fx-background-color: green;-fx-border-color: black; -fx-border-width: 3px;");
-        }
+        if(red.isSelected()) imgBackgrond.setStyle("-fx-background-color: red;-fx-border-color: black; -fx-border-width: 3px;");
+        else if(blue.isSelected()) imgBackgrond.setStyle("-fx-background-color: blue;-fx-border-color: black; -fx-border-width: 3px;");
+        else if(green.isSelected()) imgBackgrond.setStyle("-fx-background-color: green;-fx-border-color: black; -fx-border-width: 3px;");
     }
 
     @FXML
     protected void changeImg(){
-        if(circle.isSelected()){
-            createImg("/icons/kor.png");
-        }
-        else if(square.isSelected()){
-            createImg("/icons/negyzet.png");
-        }
-        else if(triangle.isSelected()){
-            createImg("/icons/haromszog.png");
-        }
+        if(circle.isSelected()) createImg("/icons/kor.png");
+        else if(square.isSelected()) createImg("/icons/negyzet.png");
+        else if(triangle.isSelected()) createImg("/icons/haromszog.png");
     }
 
     @FXML
     protected void createImg(String path){
-        if(path == null || path.isEmpty())
-            return;
+        if(path == null || path.isEmpty()) return;
 
-        Image image = new Image(getClass().getResourceAsStream(path));
-        imageView.setImage(image);
+        imageView.setImage(new Image(getClass().getResourceAsStream(path)));
     }
 
     @FXML
@@ -144,14 +126,14 @@ public class AlakzatController implements Initializable {
         }
 
         if(!isTestIsRunning){
-            Image add_img = new Image(getClass().getResourceAsStream("/icons/add16.png"));
-            addButton.setGraphic(new ImageView(add_img));
+            addButton.setGraphic(new ImageView(
+                    new Image(getClass().getResourceAsStream("/icons/add16.png"))));
 
-            Image delete_img = new Image(getClass().getResourceAsStream("/icons/del16.png"));
-            deleteButton.setGraphic(new ImageView(delete_img));
+            deleteButton.setGraphic(new ImageView(
+                    new Image(getClass().getResourceAsStream("/icons/del16.png"))));
 
-            Image save_img = new Image(getClass().getResourceAsStream("/icons/save16.png"));
-            saveButton.setGraphic(new ImageView(save_img));
+            saveButton.setGraphic(new ImageView(
+                    new Image(getClass().getResourceAsStream("/icons/save16.png"))));
         }
 
     }
